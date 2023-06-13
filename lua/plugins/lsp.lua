@@ -27,8 +27,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      -- options for vim.diagnostic.config()
-      -- LSP Server Settings
       servers = {
         jsonls = require("../config/lsp/jsonls"),
         cssls = require("../config/lsp/cssls"),
