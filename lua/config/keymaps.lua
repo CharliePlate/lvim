@@ -2,6 +2,7 @@
 vim.keymap.del({ "t", "n" }, "<C-/>")
 vim.keymap.del({ "n" }, "<leader>ft")
 vim.keymap.del({ "n" }, "<leader>fT")
+
 local M = {
   normal = {
     ["<C-s>"] = ":w<CR>",

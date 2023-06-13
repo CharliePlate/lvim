@@ -9,6 +9,22 @@ return {
     end,
   },
   {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = function(_, opts)
+      return vim.tbl_deep_extend("force", opts, {
+        window = {
+          mappings = vim.tbl_deep_extend("force", opts.window.mappings, {
+
+            ["P"] = function(state)
+              local node = state.tree:get_node()
+              require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+            end,
+          }),
+        },
+      })
+    end,
+  },
+  {
     "folke/noice.nvim",
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {

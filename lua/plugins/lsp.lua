@@ -59,10 +59,11 @@ return {
       })
     end,
   },
+  -- NOTE: Inc Rename
   {
     "smjonas/inc-rename.nvim",
     config = function()
-      require("inc_rename")
+      require("inc_rename").setup()
     end,
   },
 }
