@@ -1,6 +1,6 @@
 vim.cmd([[
   augroup _general_settings
     autocmd!
-		autocmd BufWinEnter * :set endofline
+		autocmd BufWritePre * :set endofline
   augroup end
   ]])

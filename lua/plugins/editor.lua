@@ -14,7 +14,6 @@ return {
       return vim.tbl_deep_extend("force", opts, {
         window = {
           mappings = vim.tbl_deep_extend("force", opts.window.mappings, {
-
             ["P"] = function(state)
               local node = state.tree:get_node()
               require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
@@ -36,6 +35,7 @@ return {
           },
           hover = {
             enabled = true,
+            silent = true, -- set to true to not show a message if hover is not available
             view = nil, -- when nil, use defaults from documentation
             opts = {}, -- merged with defaults from documentation
           },

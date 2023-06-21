@@ -26,37 +26,54 @@ return {
   -- NOTE: LspConfig
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        jsonls = require("../config/lsp/jsonls"),
-        cssls = require("../config/lsp/cssls"),
-        vtsls = require("../config/lsp/vtsls"),
-      },
-    },
+    opts = function(_, opts)
+      return vim.tbl_deep_extend("force", opts, {
+        format = {
+          formatting_options = nil,
+          timeout_ms = 5000,
+        },
+        servers = {
+          jsonls = require("../config/lsp/jsonls"),
+          cssls = require("../config/lsp/cssls"),
+          vtsls = require("../config/lsp/vtsls"),
+        },
+        capabilities = {
+          textDocument = {
+            foldingRange = {
+              dynamicRegistration = false,
+              lineFoldingOnly = true,
+            },
+          },
+        },
+        inlay_hints = {
+          enabled = true,
+        },
+      })
+    end,
   },
   -- NOTE: VTSLS
   {
     "yioneko/nvim-vtsls",
   },
   -- NOTE: Inlay Hints
-  {
-    "lvimuser/lsp-inlayhints.nvim",
-    event = "LspAttach",
-    branch = "anticonceal",
-    opts = {},
-    init = function()
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
-        callback = function(args)
-          if not (args.data and args.data.client_id) then
-            return
-          end
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          require("lsp-inlayhints").on_attach(client, args.buf, false)
-        end,
-      })
-    end,
-  },
+  -- {
+  --   "lvimuser/lsp-inlayhints.nvim",
+  --   event = "LspAttach",
+  --   branch = "anticonceal",
+  --   opts = {},
+  --   init = function()
+  --     vim.api.nvim_create_autocmd("LspAttach", {
+  --       group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
+  --       callback = function(args)
+  --         if not (args.data and args.data.client_id) then
+  --           return
+  --         end
+  --         local client = vim.lsp.get_client_by_id(args.data.client_id)
+  --         require("lsp-inlayhints").on_attach(client, args.buf, false)
+  --       end,
+  --     })
+  --   end,
+  -- },
   -- NOTE: Inc Rename
   {
     "smjonas/inc-rename.nvim",
