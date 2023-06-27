@@ -52,6 +52,21 @@ return {
       end
 
       require("dap").configurations.typescript = typescript
+      require("dap").configurations.vue = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch file",
+          program = "${file}",
+          cwd = vim.fn.getcwd(),
+          sourceMaps = true,
+          protocol = "inspector",
+          console = "integratedTerminal",
+          outFiles = { "${workspaceFolder}/dist/**/*.js" },
+          runtimeExecutable = "/Users/charlieplate/.yarn/bin/vue-cli-service",
+          runtimeArgs = { "serve" },
+        },
+      }
 
       local Config = require("lazyvim.config")
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
