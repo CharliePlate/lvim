@@ -35,7 +35,7 @@ return {
         servers = {
           jsonls = require("../config/lsp/jsonls"),
           cssls = require("../config/lsp/cssls"),
-          vtsls = require("../config/lsp/vtsls"),
+          -- vtsls = require("../config/lsp/vtsls"),
         },
         capabilities = {
           textDocument = {
@@ -80,5 +80,23 @@ return {
     config = function()
       require("inc_rename").setup()
     end,
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      settings = {
+        tsserver_file_preferences = {
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+      },
+    },
   },
 }
