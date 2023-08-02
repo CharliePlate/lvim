@@ -24,6 +24,7 @@ return {
     dependencies = {
       "timakro/vim-yadi",
       "HiPhish/nvim-ts-rainbow2",
+      "windwp/nvim-ts-autotag",
     },
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {

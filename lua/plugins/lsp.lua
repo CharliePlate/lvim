@@ -75,4 +75,20 @@ return {
       },
     },
   },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      return vim.tbl_deep_extend("force", opts, {
+        sources = vim.list_extend(opts.sources, {
+          nls.builtins.formatting.gofumpt.with({
+            filetypes = { "go" },
+          }),
+          nls.builtins.formatting.prettierd.with({
+            filetypes = { "javascript", "typescript", "json", "css", "scss", "html", "yaml", "markdown", "svelte" },
+          }),
+        }),
+      })
+    end,
+  },
 }

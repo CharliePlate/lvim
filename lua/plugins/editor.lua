@@ -100,4 +100,35 @@ return {
       require("toggleterm").setup(opts)
     end,
   },
+  {
+    "anuvyklack/windows.nvim",
+    dependencies = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim",
+    },
+    config = function()
+      require("windows").setup({
+        autowidth = {
+          enable = false,
+          winwidth = 5,
+          filetype = {
+            help = 2,
+          },
+        },
+        ignore = {
+          buftype = { "quickfix" },
+          filetype = { "NvimTree", "neo-tree", "undotree", "gundo" },
+        },
+        animation = {
+          enable = true,
+          duration = 300,
+          fps = 60,
+          easing = "in_out_sine",
+        },
+      })
+    end,
+    keys = {
+      { "<leader>wm", "<cmd>WindowsMaximize<cr>", desc = "Max Window" },
+    },
+  },
 }

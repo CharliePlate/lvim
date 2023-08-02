@@ -52,6 +52,7 @@ return {
       end
 
       require("dap").configurations.typescript = typescript
+
       require("dap").configurations.vue = {
         {
           type = "pwa-node",
@@ -119,5 +120,14 @@ return {
     config = function(_, opts)
       require("jester").setup(opts)
     end,
+    filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
+    keys = {
+      { "<leader>t", desc = "Test" },
+      { "<leader>dtd", "<cmd>lua require'jester'.debug()<cr>", desc = "Debug test" },
+      { "<leader>dtr", "<cmd>lua require'jester'.run()<cr>", desc = "Run test" },
+      { "<leader>dtf", "<cmd>lua require'jester'.run_file()<cr>", desc = "Run file" },
+      { "<leader>dtD", "<cmd>lua require'jester'.debug_last()<cr>", desc = "Debug last" },
+      { "<leader>dtR", "<cmd>lua require'jester'.run_last()<cr>", desc = "Run last" },
+    },
   },
 }
