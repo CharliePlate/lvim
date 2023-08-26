@@ -89,9 +89,6 @@ return {
       -- debugger_cmd = { "chrome-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
       adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
     },
-    config = function(_, opts)
-      require("dap-vscode-js").setup(opts)
-    end,
   },
   {
     "David-Kunz/jester",
@@ -117,9 +114,6 @@ return {
         remoteRoot = "${workspaceFolder}/src",
       },
     },
-    config = function(_, opts)
-      require("jester").setup(opts)
-    end,
     filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
     keys = {
       { "<leader>t", desc = "Test" },

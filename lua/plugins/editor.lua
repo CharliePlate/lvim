@@ -4,9 +4,7 @@ return {
     name = "window-picker",
     event = "VeryLazy",
     version = "2.*",
-    config = function()
-      require("window-picker").setup()
-    end,
+    opts = {},
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -96,9 +94,6 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("toggleterm").setup(opts)
-    end,
   },
   {
     "anuvyklack/windows.nvim",
@@ -106,29 +101,36 @@ return {
       "anuvyklack/middleclass",
       "anuvyklack/animation.nvim",
     },
-    config = function()
-      require("windows").setup({
-        autowidth = {
-          enable = false,
-          winwidth = 5,
-          filetype = {
-            help = 2,
-          },
+    opts = {
+      autowidth = {
+        enable = false,
+        winwidth = 5,
+        filetype = {
+          help = 2,
         },
-        ignore = {
-          buftype = { "quickfix" },
-          filetype = { "NvimTree", "neo-tree", "undotree", "gundo" },
-        },
-        animation = {
-          enable = true,
-          duration = 300,
-          fps = 60,
-          easing = "in_out_sine",
-        },
-      })
-    end,
+      },
+      ignore = {
+        buftype = { "quickfix" },
+        filetype = { "NvimTree", "neo-tree", "undotree", "gundo" },
+      },
+      animation = {
+        enable = true,
+        duration = 300,
+        fps = 60,
+        easing = "in_out_sine",
+      },
+    },
     keys = {
       { "<leader>wm", "<cmd>WindowsMaximize<cr>", desc = "Max Window" },
     },
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {},
+  },
+  {
+    "echasnovski/mini.pairs",
+    enabled = false,
   },
 }
