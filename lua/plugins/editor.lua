@@ -8,8 +8,22 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
+    config = function(_, opts)
+      require("neo-tree").setup(vim.tbl_deep_extend("force", opts, {
+        sources = vim.list_extend(opts.sources, {
+          "filesystem", -- Neotree filesystem source
+          "netman.ui.neo-tree", -- The one you really care about 😉
+        }),
+        source_selector = {
+          winbar = true,
+          sources = {
+            { source = "filesystem" },
+            { source = "remote" },
+          },
+        },
+        filesystem = vim.tbl_deep_extend("force", opts.filesystem, {
+          hijack_netrw_behavior = "disabled",
+        }),
         window = {
           mappings = vim.tbl_deep_extend("force", opts.window.mappings, {
             ["P"] = function(state)
@@ -18,7 +32,7 @@ return {
             end,
           }),
         },
-      })
+      }))
     end,
   },
   {
@@ -132,5 +146,9 @@ return {
   {
     "echasnovski/mini.pairs",
     enabled = false,
+  },
+  {
+    "miversen33/netman.nvim",
+    opts = true,
   },
 }
