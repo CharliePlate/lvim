@@ -35,6 +35,15 @@ return {
         servers = {
           jsonls = require("../config/lsp/jsonls"),
           cssls = require("../config/lsp/cssls"),
+          gopls = {
+            settings = {
+              gopls = {
+                env = {
+                  GOFLAGS = "-tags=darwin,unix",
+                },
+              },
+            },
+          },
         },
         capabilities = {
           textDocument = {
@@ -74,17 +83,12 @@ return {
     },
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "stevearc/conform.nvim",
     opts = function(_, opts)
-      local nls = require("null-ls")
       return vim.tbl_deep_extend("force", opts, {
-        sources = vim.list_extend(opts.sources, {
-          nls.builtins.formatting.gofumpt.with({
-            filetypes = { "go" },
-          }),
-          nls.builtins.formatting.prettierd.with({
-            filetypes = { "javascript", "typescript", "json", "css", "scss", "html", "yaml", "markdown", "svelte" },
-          }),
+        formatters_by_ft = vim.tbl_deep_extend("force", opts, {
+          ["markdown"] = { { "mdformat" } },
+          ["sql"] = { { "sql-formatter" } },
         }),
       })
     end,

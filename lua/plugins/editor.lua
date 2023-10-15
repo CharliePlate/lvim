@@ -10,20 +10,6 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     config = function(_, opts)
       require("neo-tree").setup(vim.tbl_deep_extend("force", opts, {
-        sources = vim.list_extend(opts.sources, {
-          "filesystem", -- Neotree filesystem source
-          "netman.ui.neo-tree", -- The one you really care about 😉
-        }),
-        source_selector = {
-          winbar = true,
-          sources = {
-            { source = "filesystem" },
-            { source = "remote" },
-          },
-        },
-        filesystem = vim.tbl_deep_extend("force", opts.filesystem, {
-          hijack_netrw_behavior = "disabled",
-        }),
         window = {
           mappings = vim.tbl_deep_extend("force", opts.window.mappings, {
             ["P"] = function(state)
@@ -150,5 +136,15 @@ return {
   {
     "miversen33/netman.nvim",
     opts = true,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
+  {
+    "m-demare/hlargs.nvim",
   },
 }

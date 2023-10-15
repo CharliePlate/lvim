@@ -20,7 +20,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "timakro/vim-yadi",
-      "HiPhish/nvim-ts-rainbow2",
+      -- "HiPhish/nvim-ts-rainbow2",
       "windwp/nvim-ts-autotag",
     },
     opts = function(_, opts)
@@ -46,9 +46,9 @@ return {
           default_lazy = true,
           default_fallback = "auto",
         },
-        rainbow = {
-          enable = true,
-        },
+        -- rainbow = {
+        --   enable = true,
+        -- },
         textobjects = {
           select = {
             enable = true,

@@ -124,4 +124,28 @@ return {
       { "<leader>dtR", "<cmd>lua require'jester'.run_last()<cr>", desc = "Run last" },
     },
   },
+  {
+    "leoluz/nvim-dap-go",
+    opts = function(_, opts)
+      return vim.tbl_deep_extend("force", opts, {
+        dap_configurations = {
+          {
+            type = "go",
+            name = "Debug Package (Arguments)",
+            request = "launch",
+            program = "${fileDirname}",
+            args = function()
+              return coroutine.create(function(dap_run_co)
+                local args = {}
+                vim.ui.input({ prompt = "Args: " }, function(input)
+                  args = vim.split(input or "", " ")
+                  coroutine.resume(dap_run_co, args)
+                end)
+              end)
+            end,
+          },
+        },
+      })
+    end,
+  },
 }
